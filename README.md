@@ -1,6 +1,6 @@
 # ZOmicronInfo
 
-** REQUIRES .NET FRAMEWORK 4.5.2 - GET IT HERE: https://www.microsoft.com/en-us/download/details.aspx?id=42643 **
+**REQUIRES .NET FRAMEWORK 4.5.2 - GET IT HERE: https://www.microsoft.com/en-us/download/details.aspx?id=42643**
 
 A simple program made in the .NET Framwork with C# to pull information about any Pokemon in the fan-made games Pokemon Zeta and Pokemon Omicron.
 
