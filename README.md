@@ -12,7 +12,12 @@ This will simply disable colouring, and all text outputs will be the default gra
 
 If someone wants to use an external program alongside mine, a request for a pokemon can be made and piped out using any framework's output redirection.
 To do this, the program would be started with the first argument being the name or ID that would normally be entered followed by "-p".
-This data will then be output as a JSON blob for anyone to do as they wish with. All of the pokemon data is already in a JSON that is shipped with the program as well.
+This data will then be output as a JSON blob for anyone to do as they wish with. All of the pokemon data is already in a JSON that is shipped with the release as well.
+
+Note: The source contains the file "pokemon.raw" - this is the "pokemon.dat" file that comes directly from Pokemon Zeta. It should be accurate for Omicron as well.
+When the program runs, it will first check for this file. If it exists, it will convert it to JSON every time the program is launched.
+
+**I will not aid anyone in converting Zeta/Omicron files into raw text/json blobs/etc.**
 
 **Argument Examples and Effects**
 
