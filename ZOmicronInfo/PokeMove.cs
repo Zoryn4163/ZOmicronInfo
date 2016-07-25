@@ -8,27 +8,21 @@ namespace ZOmicronInfo
 {
     public class PokeMove
     {
-        public virtual int LevelLearned { get; set; }
         public virtual string Move { get; set; }
 
         public override string ToString()
         {
-            return $"L{LevelLearned}: {Move}";
+            return $"{Move}";
         }
     }
 
-    public class EggMove : PokeMove
+    public class LearnedMove : PokeMove
     {
-        public override int LevelLearned { get; set; }
-
-        public EggMove()
-        {
-            LevelLearned = 0;
-        }
+        public virtual int LevelLearned { get; set; }
 
         public override string ToString()
         {
-            return Move;
+            return $"L{LevelLearned}: {Move}";
         }
     }
 }

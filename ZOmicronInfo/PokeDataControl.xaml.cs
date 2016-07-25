@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,8 +37,8 @@ namespace ZOmicronInfo
             txtbxType1.Text = Poke.Type1.ToString();
             txtbxType2.Text = Poke.Type2.ToString();
 
-            txtbxBaseStats.Text = $"Base Stats: {Poke.BaseStats.ToSingular()} ({Poke.BaseStats.Sum()})";
-            txtbxEVsExp.Text = $"EV Gain: {Poke.EffortPoints.ToSingular()}\tEXP/LVL: {Poke.BaseExp}";
+            txtbxBaseStats.Text = $"Base Stats: {Poke.BaseStats.NiceString} (Total: {Poke.BaseStats.Total})";
+            txtbxEVsExp.Text = $"EV Gain: {Poke.EffortPoints.NiceString}\tEXP/LVL: {Poke.BaseExp}";
 
             txtbxAbilities.Text = $"Abilities: {Poke.Abilities.ToSingular()}";
             txtbxHiddenAbility.Text = $"Hidden: {Poke.HiddenAbility}";

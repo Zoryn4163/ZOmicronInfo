@@ -79,6 +79,7 @@
     <Compile Include="PokeEvo.cs" />
     <Compile Include="Pokemon.cs" />
     <Compile Include="PokeMove.cs" />
+    <Compile Include="PokeStat.cs" />
     <Compile Include="PokeType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

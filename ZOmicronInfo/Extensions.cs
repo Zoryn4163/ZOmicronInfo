@@ -24,18 +24,18 @@ namespace ZOmicronInfo
 
         public static T[] CastArrayConvert<T>(this IEnumerable ienum) where T : class
         {
-            if (typeof (T) == typeof (PokeMove))
+            if (typeof (T) == typeof (LearnedMove))
             {
-                List<PokeMove> ret = new List<PokeMove>();
+                List<LearnedMove> ret = new List<LearnedMove>();
                 List<string> s = ienum.Cast<String>().ToList();
-                PokeMove cur = null;
+                LearnedMove cur = null;
 
                 for (int i = 0; i < s.Count / 2; i++)
                 {
                     if ((i + 2) % 2 == 0)
                     {
                         //level
-                        cur = new PokeMove();
+                        cur = new LearnedMove();
                         cur.LevelLearned = s[i].AsInt();
                     }
                     else
@@ -50,9 +50,9 @@ namespace ZOmicronInfo
                 return ret.ToArray() as T[];
             }
 
-            if (typeof (T) == typeof (EggMove))
+            if (typeof (T) == typeof (PokeMove))
             {
-                return (from object v in ienum select new EggMove() {Move = v.ToString()}).ToArray() as T[];
+                return (from object v in ienum select new PokeMove() {Move = v.ToString()}).ToArray() as T[];
             }
 
             if (typeof (T) == typeof (PokeEvo))
@@ -155,18 +155,18 @@ namespace ZOmicronInfo
                 ret = new PokeType(ret.ToString());
             }
 
-            if (typeof(T) == typeof(PokeMove[]))
+            if (typeof(T) == typeof(LearnedMove[]))
             {
-                List<PokeMove> mv = new List<PokeMove>();
+                List<LearnedMove> mv = new List<LearnedMove>();
                 List<string> s = ret.ToString().Split(',').ToList();
-                PokeMove cur = null;
+                LearnedMove cur = null;
 
                 for (int i = 0; i < s.Count / 2; i++)
                 {
                     if ((i + 2) % 2 == 0)
                     {
                         //level
-                        cur = new PokeMove();
+                        cur = new LearnedMove();
                         cur.LevelLearned = s[i].AsInt();
                     }
                     else
@@ -181,9 +181,9 @@ namespace ZOmicronInfo
                 ret = mv.ToArray() as T;
             }
 
-            if (typeof(T) == typeof(EggMove[]))
+            if (typeof(T) == typeof(PokeMove[]))
             {
-                return (from object v in ret.ToString().Split(',') select new EggMove() { Move = v.ToString() }).ToArray() as T;
+                return (from object v in ret.ToString().Split(',') select new PokeMove() { Move = v.ToString() }).ToArray() as T;
             }
 
             if (typeof(T) == typeof(PokeEvo[]))

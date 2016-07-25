@@ -36,6 +36,12 @@ namespace ZOmicronInfo
             Program.FreeConsole();
             FocusManager.SetIsFocusScope(this, true);
             FocusManager.SetFocusedElement(this, this);
+
+#if DEBUG
+            PokeTab pt = new PokeTab(Pokemon.FromContainedInternalName("eevee"));
+                tcMain.Items.Add(pt);
+                tcMain.SelectedItem = pt;
+#endif
         }
 
         private void btnViewLog_Click(object sender, RoutedEventArgs e)

@@ -13,18 +13,21 @@ namespace ZOmicronInfo
         public string InternalName { get; set; }
         public PokeType Type1 { get; set; }
         public PokeType Type2 { get; set; }
+
+        [JsonIgnore]
         public string TypeString => Type1.ToString() + (Type2.ToString() == "" ? "" : "/" + Type2.ToString());
-        public int[] BaseStats { get; set; }
+
+        public PokeStat BaseStats { get; set; }
         public String GenderRate { get; set; }
         public String GrowthRate { get; set; }
         public int BaseExp { get; set; }
-        public int[] EffortPoints { get; set; }
+        public PokeStat EffortPoints { get; set; }
         public int Rareness { get; set; }
         public int Happiness { get; set; }
         public string[] Abilities { get; set; }
         public string HiddenAbility { get; set; }
-        public PokeMove[] Moves { get; set; }
-        public EggMove[] EggMoves { get; set; }
+        public LearnedMove[] Moves { get; set; }
+        public PokeMove[] EggMoves { get; set; }
         public int[] Compatability { get; set; }
         public int StepsToHatch { get; set; }
         public float Height { get; set; }
@@ -73,17 +76,17 @@ namespace ZOmicronInfo
             ret.InternalName = t.PullKeyValue<string>("InternalName");
             ret.Type1 = t.PullKeyValue<PokeType>("Type1");
             ret.Type2 = t.PullKeyValue<PokeType>("Type2");
-            ret.BaseStats = t.PullKeyValue<string>("BaseStats").Split(',').CastArrayInt();
+            ret.BaseStats = new PokeStat(t.PullKeyValue<string>("BaseStats").Split(',').CastArrayInt());
             ret.GenderRate = t.PullKeyValue<string>("GenderRate");
             ret.GrowthRate = t.PullKeyValue<string>("GrowthRate");
             ret.BaseExp = t.PullKeyValue<string>("BaseEXP").AsInt();
-            ret.EffortPoints = t.PullKeyValue<string>("EffortPoints").Split(',').CastArrayInt();
+            ret.EffortPoints = new PokeStat(t.PullKeyValue<string>("EffortPoints").Split(',').CastArrayInt());
             ret.Rareness = t.PullKeyValue<string>("Rareness").AsInt();
             ret.Happiness = t.PullKeyValue<string>("Happiness").AsInt();
             ret.Abilities = t.PullKeyValue<string>("Abilities").Split(',');
             ret.HiddenAbility = t.PullKeyValue<string>("HiddenAbility");
-            ret.Moves = t.PullKeyValue<PokeMove[]>("Moves");
-            ret.EggMoves = t.PullKeyValue<EggMove[]>("EggMoves");
+            ret.Moves = t.PullKeyValue<LearnedMove[]>("Moves");
+            ret.EggMoves = t.PullKeyValue<PokeMove[]>("EggMoves");
             ret.Compatability = t.PullKeyValue<string>("Compatibility").Split(',').CastArrayInt();
             ret.StepsToHatch = t.PullKeyValue<string>("StepsToHatch").AsInt();
             ret.Height = t.PullKeyValue<string>("Height").AsFloat();

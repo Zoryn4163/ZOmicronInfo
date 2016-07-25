@@ -47,7 +47,7 @@ namespace ZOmicronInfo
 
         public static string[] Args { get; private set; }
 
-        public const string Version = "1.1";
+        public const string Version = "1.2";
 
         [STAThread]
         internal static void Main(string[] args)
@@ -67,6 +67,7 @@ namespace ZOmicronInfo
 
             Application.EnableVisualStyles();
             MainForm = new WindowMain();
+            MainForm.Title = "ZOmicron Info by Zoryn4163 - Version " + Version;
             MainForm.ShowDialog();
         }
 
@@ -217,7 +218,7 @@ namespace ZOmicronInfo
                     }
 
                     Log.AsyncLine($"Display Name: {reqp.Name} - Internal Name: {reqp.InternalName} - ID: {reqp.Id}", ConsoleColor.Red);
-                    Log.AsyncLine($"Type: {reqp.TypeString} - Base Stats: {reqp.BaseStats.ToSingular()} - Total: {reqp.BaseStats.Sum()}", ConsoleColor.DarkYellow);
+                    Log.AsyncLine($"Type: {reqp.TypeString} - Base Stats: {reqp.BaseStats.NiceString} - Total: {reqp.BaseStats.Total}", ConsoleColor.DarkYellow);
                     Log.AsyncLine($"Evolutions: {reqp.Evolutions.ToSingular()}", ConsoleColor.Yellow);
                     Log.AsyncLine($"Abilities: {reqp.Abilities.ToSingular()} - Hidden: {reqp.HiddenAbility}", ConsoleColor.Green);
                     Log.AsyncLine($"Moves: {reqp.Moves.ToSingular()}", ConsoleColor.Cyan);
@@ -225,7 +226,7 @@ namespace ZOmicronInfo
 
                     if (all)
                     {
-                        Log.AsyncLine($"Base EXP: {reqp.BaseExp} - EV Gain: {reqp.EffortPoints.ToSingular()} - EXP Rate: {reqp.GrowthRate}", ConsoleColor.Magenta);
+                        Log.AsyncLine($"Base EXP: {reqp.BaseExp} - EV Gain: {reqp.EffortPoints.NiceString} - EXP Rate: {reqp.GrowthRate}", ConsoleColor.Magenta);
                         Log.AsyncLine($"Gender Rate: {reqp.GenderRate} - Rareness: {reqp.Rareness} - Happiness: {reqp.Happiness}", ConsoleColor.Red);
                         Log.AsyncLine($"Egg Steps: {reqp.StepsToHatch} - Egg Groups: {reqp.Compatability.ToSingular()} - Regional IDs: {reqp.RegionalNumbers.ToSingular()}", ConsoleColor.Yellow);
                         Log.AsyncLine($"Weight: {reqp.Weight} - Height: {reqp.Height} - Habitat: {reqp.Habitat} - Kind: {reqp.Kind}", ConsoleColor.Green);
