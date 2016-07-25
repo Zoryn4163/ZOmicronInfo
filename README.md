@@ -10,7 +10,7 @@ Currently, the program features a simple GUI that, when opened directly without 
 The GUI will then require the user to choose a Pokemon from the 'Tabs' drop-down on the top of the window, and will display all information regarding the selected Pokemon.
 The display of the selected Pokemon is multi-tab-based, so (almost) any number of Pokemon's data can be switched to with ease.
 
-![alt text](https://i.gyazo.com/dfb38e058bc9f5c8846771af4a2fb1ad.png "Version 1.1 GUI")
+![alt text](https://i.gyazo.com/657f897fefde660397a0f209243add53.png "Version 1.2 GUI")
 
 If anyone prefers a console-implementation, simply launch the program with any* argument, or the ones listed below. (* Some arguments may not work, but most will.)
 
