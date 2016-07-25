@@ -2,16 +2,19 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Brushes = System.Windows.Media.Brushes;
 
 namespace ZOmicronInfo
 {
     public static class Log
     {
-        public static ConcurrentQueue<LogMessage> Messages = new ConcurrentQueue<LogMessage>(); 
+        public static Thread LogThread { get; internal set; }
+        public static ConcurrentQueue<LogMessage> Messages = new ConcurrentQueue<LogMessage>();
 
         public static void Async(object o = null, ConsoleColor c = ConsoleColor.Gray)
         {
@@ -34,7 +37,7 @@ namespace ZOmicronInfo
 
         internal static void StartWriting()
         {
-            Task.Run(() =>
+            LogThread = new Thread(() =>
             {
                 //Debug.WriteLine("Async Logging Begins");
                 LogMessage tmp = null;
@@ -42,19 +45,34 @@ namespace ZOmicronInfo
                 {
                     //lock (Messages)
                     {
-                        if (!Messages.IsEmpty)
+                        if (Messages?.Any() != null && !Messages.IsEmpty)
                         {
-                            for (int i = 0; i < (Messages.Count > 100 ? 100 : Messages.Count); i++)
+                            //for (int i = 0; i < (Messages.Count > 100 ? 100 : Messages.Count); i++)
                             {
                                 if (Messages.TryDequeue(out tmp))
                                 {
-                                    if (!Program.DisableColour)
-                                        Console.ForegroundColor = tmp.Colour;
+                                    if (Program.UsingGui)
+                                    {
+                                        if (Program.MainForm?.LogWindow?.txtbxLog != null)
+                                        {
+                                            //Program.MainForm.LogWindow.txtbxLog.Foreground = Brushes.Cyan;
+                                            Program.MainForm.LogWindow.AppendText(tmp.Message);
+                                        }
+                                        else
+                                        {
+                                            Debug.WriteLine("DROPPED: " + tmp.Message);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (!Program.DisableColour)
+                                            Console.ForegroundColor = tmp.Colour;
 
-                                    Console.Write(tmp.Message);
+                                        Console.Write(tmp.Message);
 
-                                    if (!Program.DisableColour)
-                                        Console.ForegroundColor = ConsoleColor.Gray;
+                                        if (!Program.DisableColour)
+                                            Console.ForegroundColor = ConsoleColor.Gray;
+                                    }
                                 }
                             }
                         }
@@ -62,6 +80,13 @@ namespace ZOmicronInfo
                     Thread.Sleep(100);
                 }
             });
+            LogThread.Start();
+        }
+
+        internal static void StopWriting()
+        {
+            LogThread.Abort();
+            Messages = new ConcurrentQueue<LogMessage>();
         }
     }
 

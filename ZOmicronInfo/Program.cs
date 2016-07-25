@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -13,6 +15,16 @@ namespace ZOmicronInfo
 {
     class Program
     {
+        private const UInt32 StdOutputHandle = 0xFFFFFFF5;
+        [DllImport("kernel32")]
+        public static extern bool AllocConsole();
+        [DllImport("kernel32")]
+        public static extern bool FreeConsole();
+        [DllImport("kernel32.dll")]
+        private static extern IntPtr GetStdHandle(UInt32 nStdHandle);
+        [DllImport("kernel32.dll")]
+        private static extern void SetStdHandle(UInt32 nStdHandle, IntPtr handle);
+
         public static string ExePath = Assembly.GetExecutingAssembly().Location;
         public static string ExeDir = Path.GetDirectoryName(ExePath);
         public static string RawPokePath = Path.Combine(ExeDir, "pokemon.raw");
@@ -29,24 +41,37 @@ namespace ZOmicronInfo
 
         public static bool DisableColour { get; private set; }
 
-        static void Main(string[] args)
+        public static Thread ConsoleThread { get; internal set; }
+        public static WindowMain MainForm { get; private set; }
+        public static bool UsingGui { get; internal set; }
+
+        public static string[] Args { get; private set; }
+
+        public const string Version = "1.1";
+
+        [STAThread]
+        internal static void Main(string[] args)
         {
-            if (args.ElementAtOrDefault(0) != null)
+            Args = args;
+            
+            if (args.Length > 0)
             {
-                req = args[0].Trim();
+                UsingGui = false;
+                UseConsole();
+                return;
             }
 
-            if (args.Contains("-p"))
-            {
-                Piping = true;
-            }
+            UsingGui = true;
+            LoadPokeData();
+            ConsoleThread = new Thread(UseConsole);
 
-            DisableColour = args.Contains("-nc");
+            Application.EnableVisualStyles();
+            MainForm = new WindowMain();
+            MainForm.ShowDialog();
+        }
 
-            Console.Title = "ZOmicron Info by Zoryn4163";
-
-            Log.StartWriting();
-
+        public static void LoadPokeData()
+        {
             if (File.Exists(RawPokePath))
             {
                 RawPokeData = File.ReadAllLines(RawPokePath);
@@ -65,7 +90,15 @@ namespace ZOmicronInfo
             }
             else
             {
-                Log.AsyncLine("ERROR: Raw/Json data file not found.\nEnsure the file 'pokemon.raw' or 'pokemon.json' exists next to EXE.", ConsoleColor.Red);
+                string err = "ERROR: Raw/Json data file not found.\nEnsure the file 'pokemon.raw' or 'pokemon.json' exists next to EXE.";
+
+                if (UsingGui)
+                {
+                    MessageBox.Show(err, "ERROR");
+                    Environment.Exit(-1);
+                }
+
+                Log.AsyncLine(err, ConsoleColor.Red);
 
                 if (!Piping)
                     Console.ReadKey();
@@ -75,6 +108,37 @@ namespace ZOmicronInfo
             ContainedPokeData = JsonPokeData.ToObject<PokemonContainer>();
 
             Log.AsyncLine($"{ContainedPokeData.AllPokemon.Count} Pokemon Loaded", ConsoleColor.Green);
+            
+        }
+
+        public static void UseConsole()
+        {
+            Log.StartWriting();
+
+            if (Args.ElementAtOrDefault(0) != null)
+            {
+                req = Args[0].Trim();
+            }
+
+            if (Args.Contains("-p"))
+            {
+                Piping = true;
+            }
+
+            DisableColour = Args.Contains("-nc");
+
+            if (!Piping)
+            {
+                //AllocConsole();
+
+                //Console.SetOut(new StreamWriter(Console.OpenStandardOutput()) {AutoFlush = true});
+                //Console.SetIn(new StreamReader(Console.OpenStandardInput()));
+
+                Console.Title = "ZOmicron Info by Zoryn4163 V" + Version;
+            }
+
+            LoadPokeData();
+
             Log.AsyncLine("Append any query with '-a' to get ALL information on the pokemon.");
             Log.AsyncLine("Append any query with '-j' to get a JSON response on the pokemon.");
             Log.AsyncLine("No arguments will return common data on the pokemon.");
@@ -116,6 +180,17 @@ namespace ZOmicronInfo
                     Console.SetCursorPosition(0, 0);
                     continue;
                 }
+
+                req = req.Trim();
+
+                /*if (req == "gui")
+                {
+                    MainForm.EnableFromConsole();
+                    while (UsingGui)
+                    {
+                    }
+                    continue;
+                }*/
 
                 if (req.AsInt() > 0)
                 {

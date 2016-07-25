@@ -1,0 +1,29 @@
+﻿<Window x:Class="ZOmicronInfo.WindowMain"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZOmicronInfo"
+        mc:Ignorable="d"
+        Title="ZOmicron Info" Height="350" Width="850" Loaded="Window_Loaded" Closing="Window_Closing">
+    <Grid x:Name="Canvas" Focusable ="True">
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_Program">
+                    <MenuItem x:Name="btnViewLog" Header="_View Log" Click="btnViewLog_Click"/>
+                    <MenuItem x:Name="btnExit" Header="_Exit" Click="btnExit_Click"/>
+                </MenuItem>
+                <MenuItem Header="_Tabs">
+                    <MenuItem x:Name="btnAddPokemon" Header="_Add Pokemon" Click="btnAddPokemon_Click" />
+                    <MenuItem x:Name="btnCloseTab" Header="_Close Current Tab" Click="btnCloseTab_Click" />
+                    <MenuItem x:Name="btnCloseAllTabs" Header="_Close All Tabs" Click="btnCloseAllTabs_Click" />
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+            <TabControl x:Name="tcMain" Margin="0,20,0,0">
+                <TabItem Header="&lt;pkmn&gt;">
+                    <Grid Background="#FFE5E5E5" Margin="0,0,0,0"/>
+                </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

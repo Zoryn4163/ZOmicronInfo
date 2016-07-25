@@ -36,6 +36,11 @@ namespace ZOmicronInfo
         public string Pokedex { get; set; }
         public PokeEvo[] Evolutions { get; set; }
 
+        public override string ToString()
+        {
+            return $"{InternalName} - {Id}";
+        }
+
         public static Pokemon FromRawIndex(int index, bool writeNoPoke = false)
         {
             if (Program.RawPokeData == null)
