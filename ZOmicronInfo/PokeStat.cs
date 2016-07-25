@@ -38,9 +38,9 @@ namespace ZOmicronInfo
                 HP = stats[0];
                 A = stats[1];
                 D = stats[2];
-                SA = stats[3];
-                SD = stats[4];
-                SP = stats[5];
+                SA = stats[4];
+                SD = stats[5];
+                SP = stats[3];
             }
             catch
             {
