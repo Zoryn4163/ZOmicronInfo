@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZOmicronInfo"
         mc:Ignorable="d"
-        Title="ZOmicron Info" Height="350" Width="850" Loaded="Window_Loaded" Closing="Window_Closing">
+        Title="ZOmicron Info" Height="450" Width="850" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid x:Name="Canvas" Focusable ="True">
         <DockPanel>
             <Menu DockPanel.Dock="Top">

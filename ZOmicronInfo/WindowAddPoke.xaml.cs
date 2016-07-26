@@ -31,9 +31,16 @@ namespace ZOmicronInfo
         {
             txtbxFilter.Text = PlaceholderFilter;
 
-            foreach (Pokemon p in Program.ContainedPokeData.AllPokemon)
+            /*foreach (Pokemon p in Program.ContainedPokeData.AllPokemon)
             {
-                lstbxPokes.Items.Add(p);
+                //lstbxPokes.Items.Add(p);
+            }*/
+
+            var ls = lstbxPokes.Items.SourceCollection.OfType<Pokemon>().FirstOrDefault(x => x.Id == Program.LastId);
+
+            if (ls != null)
+            {
+                lstbxPokes.ScrollIntoView(ls);
             }
         }
 
@@ -88,6 +95,11 @@ namespace ZOmicronInfo
         {
             if (lstbxPokes.SelectedItem != null)
                 btnSubmit_Click(sender, null);
+        }
+
+        private void lstbxPokes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Program.LastId = ((Pokemon) (lstbxPokes.SelectedItem)).Id;
         }
     }
 }

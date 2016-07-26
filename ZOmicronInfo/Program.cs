@@ -29,6 +29,9 @@ namespace ZOmicronInfo
         public static string ExeDir = Path.GetDirectoryName(ExePath);
         public static string RawPokePath = Path.Combine(ExeDir, "pokemon.raw");
         public static string JsonPokePath = Path.Combine(ExeDir, "pokemon.json");
+        public static string GraphicsPath = Path.Combine(ExeDir, "Graphics", "Battlers");
+        public static string[] GraphicsExtensions = "png|jpg|gif".Split('|');
+        public static int LastId = 0;
 
         public static string[] RawPokeData { get; private set; }
         public static JObject JsonPokeData { get; private set; }
@@ -47,7 +50,7 @@ namespace ZOmicronInfo
 
         public static string[] Args { get; private set; }
 
-        public const string Version = "1.2";
+        public const string Version = "1.3";
 
         [STAThread]
         internal static void Main(string[] args)

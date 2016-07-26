@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +15,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using WpfAnimatedGif;
+using Image = System.Windows.Controls.Image;
 
 namespace ZOmicronInfo
 {
@@ -57,6 +61,40 @@ namespace ZOmicronInfo
             txtbxUselessInfo.Text = $"Rareness: {Poke.Rareness}\tHeight: {Poke.Height}\tWeight: {Poke.Weight}\tColour: {Poke.Colour}\tHabitat: {Poke.Habitat}\tKind: {Poke.Kind}\tRegional IDs: {Poke.RegionalNumbers.ToSingular()}";
 
             txtbxPokedexEntry.Text = $"Pokedex: {Poke.Pokedex}";
+
+            SetPokeImage(imgFront, 0);
+            SetPokeImage(imgBack, 1);
+            SetPokeImage(imgFrontShiny, 2);
+            SetPokeImage(imgBackShiny, 3);
+            SetPokeImage(imgShadow, 4);
+        }
+
+        void SetPokeImage(Image i, byte b)
+        {
+            try
+            {
+                string s = Path.Combine(Program.GraphicsPath, Poke.IdString + (b == 0 ? "" : b == 1 ? "b" : b == 2 ? "s" : b == 3 ? "sb" : b == 4 ? "_shadow" : b == 5 ? "b_shadow" : ""));
+                foreach (string ss in Program.GraphicsExtensions)
+                {
+                    if (File.Exists(s + "." + ss))
+                    {
+                        if (ss == "gif")
+                        {
+                            BitmapImage ret = new BitmapImage();
+                            ret.BeginInit();
+                            ret.UriSource = new Uri(s + "." + ss);
+                            ret.EndInit();
+                            ImageBehavior.SetAnimatedSource(i, ret);
+                        }
+
+                        i.Source = new BitmapImage(new Uri(s + "." + ss));
+                    }
+                }
+            }
+            catch
+            {
+                
+            }
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZOmicronInfo" Width="500" Height="300" Loaded="Window_Loaded">
     <Grid>
-        <ListBox x:Name="lstbxPokes" Margin="10,38,10,10" MouseDoubleClick="lstbxPokes_MouseDoubleClick"/>
+        <ListBox x:Name="lstbxPokes" Margin="10,38,10,10" MouseDoubleClick="lstbxPokes_MouseDoubleClick" SelectionChanged="lstbxPokes_SelectionChanged"/>
         <TextBox x:Name="txtbxFilter" Height="23" Margin="10,10,90,0" TextWrapping="Wrap" VerticalAlignment="Top" LostFocus="txtbxFilter_LostFocus" GotFocus="txtbxFilter_GotFocus" TextChanged="txtbxFilter_TextChanged"/>
         <Button x:Name="btnSubmit" Content="Select Poké" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="75" Height="23" Click="btnSubmit_Click"/>
 

@@ -9,13 +9,17 @@ namespace ZOmicronInfo
     public class Pokemon
     {
         public int Id { get; set; }
+
+        [JsonIgnore]
+        public string IdString => Id < 10 ? "00" + Id : Id < 100 ? "0" + Id : Id.ToString();
+
         public string Name { get; set; }
         public string InternalName { get; set; }
         public PokeType Type1 { get; set; }
         public PokeType Type2 { get; set; }
 
         [JsonIgnore]
-        public string TypeString => Type1.ToString() + (Type2.ToString() == "" ? "" : "/" + Type2.ToString());
+        public string TypeString => Type1 + (Type2.ToString() == "" ? "" : "/" + Type2);
 
         public PokeStat BaseStats { get; set; }
         public String GenderRate { get; set; }

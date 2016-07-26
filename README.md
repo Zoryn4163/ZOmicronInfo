@@ -10,7 +10,9 @@ Currently, the program features a simple GUI that, when opened directly without 
 The GUI will then require the user to choose a Pokemon from the 'Tabs' drop-down on the top of the window, and will display all information regarding the selected Pokemon.
 The display of the selected Pokemon is multi-tab-based, so (almost) any number of Pokemon's data can be switched to with ease.
 
-![alt text](https://i.gyazo.com/657f897fefde660397a0f209243add53.png "Version 1.2 GUI")
+![alt text](https://i.gyazo.com/7d1520ae6bebb89a60270ff016a26e8a.png "Version 1.3 GUI")
+
+**CONSOLE INFORMATION (AKA NO GUI)**
 
 If anyone prefers a console-implementation, simply launch the program with any* argument, or the ones listed below. (* Some arguments may not work, but most will.)
 
@@ -20,6 +22,8 @@ This will simply disable colouring, and all text outputs will be the default gra
 If someone wants to use an external program alongside mine, a request for a pokemon can be made and piped out using any framework's output redirection.
 To do this, the program would be started with the first argument being the name or ID that would normally be entered followed by "-p".
 This data will then be output as a JSON blob for anyone to do as they wish with. All of the pokemon data is already in a JSON that is shipped with the release as well.
+
+**OTHER INFORMATION**
 
 Note: The source contains the file "pokemon.raw" - this is the "pokemon.dat" file that comes directly from Pokemon Zeta. It should be accurate for Omicron as well.
 When the program runs, it will first check for this file. If it exists, it will convert it to JSON every time the program is launched.
