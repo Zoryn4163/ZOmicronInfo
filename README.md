@@ -14,9 +14,11 @@ The display of the selected Pokemon is multi-tab-based, so (almost) any number o
 
 **ABOUT PICTURES IN GUI**
 
-Since V1.3, the GUI has support for images of the selected Pokemon at the bottom. The program supports *.png, *.jpg, and *.gif files.
-The program will look for them in the folder ./Graphics/Battlers/
-The simplest way to make the images show is to drop this program *next to Game.exe for Zeta/Omicron*
+- Since V1.3, the GUI has support for images of the selected Pokemon at the bottom. 
+- The program supports *.png, *.jpg, and *.gif files.
+- The program will look for them in the folder ./Graphics/Battlers/
+- The simplest way to make the images show is to drop this program *next to Game.exe for Zeta/Omicron*
+
 **This is not required and the program will work fine without any images - they are purely aesthetic.**
 
 **CONSOLE INFORMATION (AKA NO GUI)**
