@@ -19,18 +19,18 @@ Due to how the program handles the data, it can easily be adapted to any game ma
 - The program will look for them in the folder ./Graphics/Battlers/
 - The simplest way to make the images show is to drop this program *next to Game.exe for Zeta/Omicron*
 
-**This is not required and the program will work fine without any images - they are purely aesthetic.**
+- **This is not required and the program will work fine without any images - they are purely aesthetic.**
 
 **CONSOLE INFORMATION (AKA NO GUI)**
 
 - If anyone prefers a console-implementation, simply launch the program with any* argument, or the ones listed below. (* Some arguments may not work, but most will.)
 
 - Colours can be disabled by launching the program with the argument **"-nc"**.
-- This will simply disable colouring, and all text outputs will be the default gray.
+  - This will simply disable colouring, and all text outputs will be the default gray.
 
 - If someone wants to use an external program alongside mine, a request for a pokemon can be made and piped out using any framework's output redirection.
-- To do this, the program would be started with the first argument being the name or ID that would normally be entered followed by "-p".
-- This data will then be output as a JSON blob for anyone to do as they wish with. All of the pokemon data is already in a JSON that is shipped with the release as well.
+  - To do this, the program would be started with the first argument being the name or ID that would normally be entered followed by "-p".
+  - This data will then be output as a JSON blob for anyone to do as they wish with. All of the pokemon data is already in a JSON that is shipped with the release as well.
 
 *Argument Examples and Effects*
 
