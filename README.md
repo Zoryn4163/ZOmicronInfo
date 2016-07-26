@@ -2,6 +2,8 @@
 
 **REQUIRES .NET FRAMEWORK 4.5.2 - GET IT HERE: https://www.microsoft.com/en-us/download/details.aspx?id=42643**
 
+![alt text](https://i.gyazo.com/7d1520ae6bebb89a60270ff016a26e8a.png "Version 1.3 GUI")
+
 A simple program made in the .NET Framwork with C# to pull information about any Pokemon in the fan-made games Pokemon Zeta and Pokemon Omicron.
 
 Due to how the program handles the data, it can easily be adapted to any game made using Pokemon Essentials.
@@ -12,7 +14,11 @@ The GUI will then require the user to choose a Pokemon from the 'Tabs' drop-down
 
 The display of the selected Pokemon is multi-tab-based, so (almost) any number of Pokemon's data can be switched to with ease.
 
-![alt text](https://i.gyazo.com/7d1520ae6bebb89a60270ff016a26e8a.png "Version 1.3 GUI")
+**INSTALLATION**
+
+- **Extract** the ZIP Archive to any place of your choice.
+- Ensure that **both files are next to each other** (exe and json) - the program will not work without the json, and the json is just a text file.
+- **It is recommended to extract the program to the same folder that holds your Game.exe for Zeta/Omicron**
 
 **ABOUT PICTURES IN GUI**
 
