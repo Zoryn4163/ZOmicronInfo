@@ -6,9 +6,11 @@ A simple program made in the .NET Framwork with C# to pull information about any
 
 Due to how the program handles the data, it can easily be adapted to any game made using Pokemon Essentials.
 
-- Currently, the program features a simple GUI that, when opened directly without any parameters, will initialize a JSON blob containing all Pokemon data in the game currently. 
-- The GUI will then require the user to choose a Pokemon from the 'Tabs' drop-down on the top of the window, and will display all information regarding the selected Pokemon.
-- The display of the selected Pokemon is multi-tab-based, so (almost) any number of Pokemon's data can be switched to with ease.
+Currently, the program features a simple GUI that, when opened directly without any parameters, will initialize a JSON blob containing all Pokemon data in the game currently. 
+
+The GUI will then require the user to choose a Pokemon from the 'Tabs' drop-down on the top of the window, and will display all information regarding the selected Pokemon.
+
+The display of the selected Pokemon is multi-tab-based, so (almost) any number of Pokemon's data can be switched to with ease.
 
 ![alt text](https://i.gyazo.com/7d1520ae6bebb89a60270ff016a26e8a.png "Version 1.3 GUI")
 
