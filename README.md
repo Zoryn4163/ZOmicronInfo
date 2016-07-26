@@ -21,6 +21,8 @@
 - **Extract** the ZIP Archive to any place of your choice.
 - Ensure that **both files are next to each other** (exe and json) - the program will not work without the json, and the json is just a text file.
 - **It is recommended to extract the program to the same folder that holds your Game.exe for Zeta/Omicron**
+  - Example: D:\Games\Pokemon Zeta\
+  - There should be other folders for the game itself here, such as Audio and Graphics.
 
 **ABOUT PICTURES IN GUI**
 
