@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Imaging;
 using Newtonsoft.Json;
 
@@ -161,11 +162,15 @@ namespace ZOmicronInfo
 
             if (typeof(T) == typeof(LearnedMove[]))
             {
+                //Log.AsyncLine(ret.ToString() + " - "+ "\n");
+
                 List<LearnedMove> mv = new List<LearnedMove>();
                 List<string> s = ret.ToString().Split(',').ToList();
                 LearnedMove cur = null;
 
-                for (int i = 0; i < s.Count / 2; i++)
+                //Log.AsyncLine(s.ToSingular() + "\n");
+
+                for (int i = 0; i < s.Count; i++)
                 {
                     if ((i + 2) % 2 == 0)
                     {
@@ -181,6 +186,8 @@ namespace ZOmicronInfo
                         cur = null;
                     }
                 }
+
+                //Log.AsyncLine(mv.ToSingular() + "\n\n\n");
 
                 ret = mv.ToArray() as T;
             }
